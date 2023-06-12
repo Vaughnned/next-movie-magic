@@ -9,7 +9,7 @@ export default function foo(props) {
   useEffect(() => {
     async function movies(movieGenre) {
       const response = await fetch(
-        `https://api.themoviedb.org/3/discover/movie?with_genres=${movieGenre}?api_key=${process.env.NEXT_PUBLIC_MOVIE_KEY}`
+        `https://api.themoviedb.org/3/discover/movie?with_genres=${movieGenre}&api_key=${process.env.NEXT_PUBLIC_MOVIE_KEY}`
       );
 
       const data = await response.json();
