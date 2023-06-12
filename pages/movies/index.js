@@ -1,11 +1,11 @@
 import Link from "next/link";
 export default function getGenres(props) {
-  console.log(props.genres);
+  console.log(props);
 
   return props.genres.map((item, index) => {
     return (
-      <Link href={`/movies/list/${item.name}`}>
-        <ul key={index}>
+      <Link key={index} href={`/movies/list/${item.name}`}>
+        <ul>
           <li>{item.name}</li>
         </ul>
       </Link>
