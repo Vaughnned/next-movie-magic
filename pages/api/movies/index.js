@@ -1,5 +1,5 @@
 export default async function (req, res) {
-  console.log(process.env.NEXT_PUBLIC_MOVIE_KEY);
+  // console.log(process.env.NEXT_PUBLIC_MOVIE_KEY);
 
   const response = await fetch(
     `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.NEXT_PUBLIC_MOVIE_KEY}`

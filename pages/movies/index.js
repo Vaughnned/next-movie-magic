@@ -1,6 +1,6 @@
 import Link from "next/link";
-export default function getGenres(props) {
-  console.log(props);
+export default function Page(props) {
+  // console.log("firing", props);
 
   return props.genres.map((item, index) => {
     return (
@@ -14,9 +14,7 @@ export default function getGenres(props) {
 }
 
 export async function getStaticProps() {
-  const genres = await fetch("http://localhost:3000/api/movies");
-  console.log(genres);
+  const genres = await fetch("http://localhost:3001/api/movies");
   const genreData = await genres.json();
-  console.log(genreData);
   return { props: genreData };
 }
