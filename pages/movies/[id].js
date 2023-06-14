@@ -2,21 +2,21 @@ import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 
-export default function movieDescription({ movieId }) {
-  const [movieList, setMovieList] = useState([]);
-  const [movieTitle, setMovieTitle] = useState("");
-  const [movieOverview, setMovieOverview] = useState("");
-  // const router = useRouter();
-  // const routerId = router.query.id;
-  // const genre = router.query.genre;
+export default function movieDescription({ movieDesc }) {
+  // const [movieList, setMovieList] = useState([]);
+  // const [movieTitle, setMovieTitle] = useState("");
+  // const [movieOverview, setMovieOverview] = useState("");
+  const router = useRouter();
+  const routerId = router.query.id;
+  const genre = router.query.genre;
 
   // console.log(routerId);
   // console.log(movieList);
 
-  const movieIndex = movieList.findIndex((i) => {
-    // console.log(i);
-    return i.id == movieId;
-  });
+  // const movieIndex = movieList.findIndex((i) => {
+  //   // console.log(i);
+  //   return i.id == routerId;
+  // });
 
   // console.log(movieIndex);
 
@@ -32,8 +32,8 @@ export default function movieDescription({ movieId }) {
       <Link href={"/movies/"}>
         <h1>Back to Movie List</h1>
       </Link>
-      <h2>{movieList[movieIndex]?.title}</h2>
-      <div>{movieList[movieIndex]?.overview}</div>
+      <h2>{movieDesc.original_title}</h2>
+      <div>{movieDesc.overview}</div>
     </>
   );
   //       })}
@@ -41,11 +41,12 @@ export default function movieDescription({ movieId }) {
   //   );
 }
 export async function getServerSideProps(context) {
-  // console.log(context.query.id);
+  // console.log("HERE", context.query);
   const id = context.query.id;
-  const movies = await fetch(`http://localhost:3001/api/movies/${id}`);
+  const movies = await fetch(`http://localhost:3000/api/movies/${id}`);
   const movieList = await movies.json();
-  return { props: { movieId: movieList } };
+  // console.log("HERE", movieList);
+  return { props: { movieDesc: movieList } };
 }
 
 // useEffect(() => {

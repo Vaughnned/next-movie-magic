@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 export default function getMovieList({ movieList, genre }) {
+  console.log({ movieList });
   return (
     <>
       <h1>{genre} List</h1>
@@ -18,7 +19,7 @@ export default function getMovieList({ movieList, genre }) {
 
 export async function getServerSideProps(context) {
   const genre = context.query.genre;
-  const movies = await fetch(`http://localhost:3001/api/movies/genre/${genre}`);
+  const movies = await fetch(`http://localhost:3000/api/movies/genre/${genre}`);
   const movieList = await movies.json();
   return { props: { movieList, genre } };
 }

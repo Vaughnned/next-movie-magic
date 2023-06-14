@@ -14,7 +14,7 @@ export default function Page(props) {
 }
 
 export async function getStaticProps() {
-  const genres = await fetch("http://localhost:3001/api/movies");
+  const genres = await fetch("http://localhost:3000/api/movies");
   const genreData = await genres.json();
   return { props: genreData };
 }
